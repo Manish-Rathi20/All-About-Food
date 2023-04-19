@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item
+        android:id="@+id/addOrganization"
+        android:title="Add Organization"/>
+    <item
+        android:id="@+id/Organization"
+        android:title="Organization" />
+
+    <item
+        android:id="@+id/NeedyPeopleMenu"
+        android:title="Needy People"/>
+
+    <item
+        android:id="@+id/adminProfile"
+        android:title="Profile">
+        <menu>
+            <item
+                android:id="@+id/adminLogout"
+                android:title="Logout"/>
+        </menu>
+    </item>
+
+</menu>

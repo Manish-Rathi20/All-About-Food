@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/orgUpdate"
+        android:title="Update Organization" />
+    <item
+        android:id="@+id/orgDelete"
+        android:title="Delete Organization" />
+</menu>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "474818610084",
+    "project_id": "all-about-food---price-talk",
+    "storage_bucket": "all-about-food---price-talk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474818610084:android:e619093b0a01d1609ab731",
+        "android_client_info": {
+          "package_name": "com.example.allaboutfood_pricetalkdonate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474818610084-278qsovcsd363bd2jlh0k5senpmn6b23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClV_u5ZgIsY8qKYT0nxjdP1y8ZjS8oiN0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474818610084-278qsovcsd363bd2jlh0k5senpmn6b23.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

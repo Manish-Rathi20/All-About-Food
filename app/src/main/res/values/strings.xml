@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">All About Food - Price Talk Donate</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signin">SignIn</string>
+    <string name="don_t_have_an_account">Don\'t have an Account ?</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="don_t_have_any_idea_b_hello_b">Don\'t have an idea? <b> RandomRecipe </b></string>
+    <string name="city_name">city Name</string>
+    <string name="todo">TODO</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/talkFragment"
+        android:icon="@drawable/ic_talk"
+        android:title="Talk" />
+    <item
+        android:id="@+id/priceFragment"
+        android:icon="@drawable/ic_price"
+        android:title="Price" />
+    <item
+        android:id="@+id/caloriesFragment"
+        android:icon="@drawable/ic_calories"
+        android:title="Calories" />
+    <item
+        android:id="@+id/recipeFragment"
+        android:icon="@drawable/ic_recipe"
+        android:title="Recipe" />
+    <item
+        android:id="@+id/donateFragment"
+        android:icon="@drawable/ic_donate"
+        android:title="Donate" />
+</menu>

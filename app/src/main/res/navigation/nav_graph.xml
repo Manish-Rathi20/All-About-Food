@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/talkFragment">
+
+    <fragment
+        android:id="@+id/talkFragment"
+        android:name="com.example.allaboutfood_pricetalkdonate.Fragments.TalkFragment"
+        android:label="fragment_talk"
+        tools:layout="@layout/fragment_talk" />
+    <fragment
+        android:id="@+id/priceFragment"
+        android:name="com.example.allaboutfood_pricetalkdonate.Fragments.PriceFragment"
+        android:label="fragment_price"
+        tools:layout="@layout/fragment_price" />
+    <fragment
+        android:id="@+id/caloriesFragment"
+        android:name="com.example.allaboutfood_pricetalkdonate.Fragments.CaloriesFragment"
+        android:label="fragment_calories"
+        tools:layout="@layout/fragment_calories" />
+    <fragment
+        android:id="@+id/recipeFragment"
+        android:name="com.example.allaboutfood_pricetalkdonate.Fragments.RecipeFragment"
+        android:label="fragment_recipe"
+        tools:layout="@layout/fragment_recipe" />
+    <fragment
+        android:id="@+id/donateFragment"
+        android:name="com.example.allaboutfood_pricetalkdonate.Fragments.DonateFragment"
+        android:label="fragment_donate"
+        tools:layout="@layout/fragment_donate" />
+</navigation>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#674747</color>
+    <color name="purple_500">#AE7660</color>
+    <color name="purple_700">#a6a184</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="bgColor">#e5e3f1</color>
+
+    <!-- Bottom Nav Color -->
+    <color name="selected_item">#12c4be</color>
+    <color name="non_selected_item">#bcbcbc</color>
+
+</resources>
