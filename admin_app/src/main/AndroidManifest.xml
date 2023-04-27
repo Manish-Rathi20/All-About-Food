@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AllAboutFoodPriceTalkDonate">
         <activity
+            android:name=".Organization.updateOrg"
+            android:exported="false" />
+        <activity
             android:name=".Organization.OrgShow"
             android:exported="false" />
         <activity
@@ -21,12 +24,10 @@
             android:exported="false" />
         <activity
             android:name=".Report.UserActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".AdminAuth.AdminLoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

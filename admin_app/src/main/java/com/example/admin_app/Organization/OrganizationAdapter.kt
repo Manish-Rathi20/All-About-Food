@@ -2,12 +2,14 @@ package com.example.admin_app.Organization
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.*
 import android.view.View.GONE
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.admin_app.R
@@ -15,12 +17,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
-class OrganizationAdapter(val orgList : List<orgData>) : RecyclerView.Adapter<OrganizationAdapter.OrgHolder>() {
+class OrganizationAdapter(val orgList: List<orgData>) :
+    RecyclerView.Adapter<OrganizationAdapter.OrgHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrgHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_org_needy_view,parent,false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_org_needy_view, parent, false)
         return OrgHolder(view)
     }
 
@@ -66,46 +71,102 @@ class OrganizationAdapter(val orgList : List<orgData>) : RecyclerView.Adapter<Or
             dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation;
             dialog.window?.setGravity(Gravity.BOTTOM)
         }
-        val db : FirebaseFirestore = FirebaseFirestore.getInstance()
-        holder.dropdownButton.setOnClickListener{
-                val popups = PopupMenu(holder.context,holder.dropdownButton)
-                popups.inflate(R.menu.org_options)
-                popups.setOnMenuItemClickListener {
-                    if(it.itemId == R.id.orgDelete)  {
-                        CoroutineScope(Dispatchers.IO).launch {
-                            try {
-                                db.collection("Org").whereEqualTo("organizationCity", orgList[position].organizationCity)
-                                    .get()
-                                    .addOnCompleteListener{task->
-                                        if(task.isSuccessful && !task.result.isEmpty){
-                                            val documentsnapshot = task.result.documents[0]
-                                            val documentId = documentsnapshot.id
-                                            FirebaseFirestore.getInstance().collection("Org").document(
-                                                documentId
-                                            ).delete()
-                                            Toast.makeText(holder.context, "Successfully Deleted", Toast.LENGTH_LONG).show()
-                                        } else {
-                                            Log.d("OrgAdapter", task.exception.toString())
-                                            Toast.makeText(
-                                                holder.context,
-                                                "Something went wrong ${task.exception}",
-                                                Toast.LENGTH_LONG
-                                            ).show()
-                                        }
+        val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+        holder.dropdownButton.setOnClickListener {
+            val popups = PopupMenu(holder.context, holder.dropdownButton)
+            popups.inflate(R.menu.org_options)
+            popups.setOnMenuItemClickListener { it ->
+                if (it.itemId == R.id.orgDelete) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            db.collection("Org").whereEqualTo(
+                                "organizationCity",
+                                orgList[position].organizationCity
+                            )
+                                .get()
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful && !task.result.isEmpty) {
+                                        val documentsnapshot = task.result.documents[0]
+                                        val documentId = documentsnapshot.id
+                                        FirebaseFirestore.getInstance().collection("Org").document(
+                                            documentId
+                                        ).delete()
+                                        Toast.makeText(
+                                            holder.context,
+                                            "Successfully Deleted",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    } else {
+                                        Log.d("OrgAdapter", task.exception.toString())
+                                        Toast.makeText(
+                                            holder.context,
+                                            "Something went wrong ${task.exception}",
+                                            Toast.LENGTH_LONG
+                                        ).show()
                                     }
-                            }catch (e : Exception){
-                                Toast.makeText(
-                                    holder.context,
-                                    "Something went wrong ${e.message}",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                }
+                        } catch (e: Exception) {
+                            Toast.makeText(
+                                holder.context,
+                                "Something went wrong ${e.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
 
-                            }
                         }
                     }
-                    true
                 }
-                popups.show()
+                if (it.itemId == R.id.orgUpdate) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            db.collection("Org").whereEqualTo(
+                                "organizationCity",
+                                orgList[position].organizationCity
+                            )
+                                .get()
+                                .addOnCompleteListener { task ->
+                                    if (task.isSuccessful && !task.result.isEmpty) {
+                                        val documentsnapshot = task.result.documents[0]
+                                        val documentId = documentsnapshot.id
+                                        db.collection("Org").whereEqualTo(
+                                            "organizationCity",
+                                            orgList[position].organizationCity
+                                        ).addSnapshotListener { snapshot, exception ->
+                                            if (snapshot == null || exception != null) {
+                                                Log.d("Adapter", "${exception?.message}")
+                                                Toast.makeText(
+                                                    holder.context,
+                                                    "${exception?.message}",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                                return@addSnapshotListener
+                                            }
+                                            val myPost = snapshot.toObjects(orgData::class.java)
+                                            val intent =
+                                                Intent(holder.context, updateOrg::class.java)
+
+                                            intent.putExtra("image", myPost[0].image_Url)
+                                            intent.putExtra("add", myPost[0].organizationAdd)
+                                            intent.putExtra("city", myPost[0].organizationCity)
+                                            intent.putExtra("mobile", myPost[0].organizationMobile)
+                                            intent.putExtra("documentId",documentId)
+                                            holder.context.startActivity(intent)
+
+                                        }
+                                    }
+                                }.await()
+
+                        } catch (e: Exception) {
+                            Toast.makeText(
+                                holder.context,
+                                "Something went wrong ${e.message}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+                true
+            }
+            popups.show()
 
         }
 
@@ -115,6 +176,7 @@ class OrganizationAdapter(val orgList : List<orgData>) : RecyclerView.Adapter<Or
         val OrgCity = itemView.findViewById<TextView>(R.id.tvCityName)
         val OrgPhoto = itemView.findViewById<ImageView>(R.id.imOrgPicture)
         val dropdownButton = itemView.findViewById<ImageView>(R.id.deleteRequestNeedy)
+
         @SuppressLint("UseSwitchCompatOrMaterialCode")
         val switch = itemView.findViewById<Switch>(R.id.switch1)
         val context = itemView.context

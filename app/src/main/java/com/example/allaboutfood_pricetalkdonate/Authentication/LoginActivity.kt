@@ -38,6 +38,7 @@ class LoginActivity : AppCompatActivity() {
         }
         binding.model.setOnClickListener{
             startActivity(Intent(this@LoginActivity,signUpActivity::class.java))
+            finish()
         }
 
         binding.tvForgot.setOnClickListener{
@@ -108,8 +109,8 @@ class LoginActivity : AppCompatActivity() {
 
     // for sign In ( Log In ) user
     private fun signInUser() {
-        val email = binding.etEmail.text.toString()
-        val password = binding.etPass.text.toString()
+        val email = binding.etEmail.text.toString().replace(" ","")
+        val password = binding.etPass.text.toString().replace(" ","")
         if (email.isNotBlank() || password.isNotBlank()) {
             CoroutineScope(Dispatchers.IO).launch {
                 try {

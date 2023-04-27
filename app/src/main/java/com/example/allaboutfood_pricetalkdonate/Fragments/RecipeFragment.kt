@@ -69,7 +69,7 @@ class RecipeFragment : Fragment() {
         binding.recipeCategory.adapter = adapters
         binding.recipeCategory.layoutManager = LinearLayoutManager(requireContext())
         if(networkTalk?.isNetworkRequest() == true) {
-            val Ingredient = binding.etIngredient.text.toString()
+            val Ingredient = binding.etIngredient.text.toString().replace(" ","")
             binding.btnGet.setOnClickListener {
                 if (binding.etIngredient.text.isNotBlank()) {
                     getPerson(binding.etIngredient.text.toString())

@@ -1,7 +1,7 @@
 package com.example.allaboutfood_pricetalkdonate.Fragments
 
 import android.annotation.SuppressLint
-import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -10,15 +10,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
-import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.allaboutfood_pricetalkdonate.*
-import com.example.allaboutfood_pricetalkdonate.PriceFragments.amazonLayout
+import com.example.allaboutfood_pricetalkdonate.PriceFragments.tabWebsiteLayout
 import com.example.allaboutfood_pricetalkdonate.databinding.FragmentPriceBinding
 
 
@@ -84,29 +85,45 @@ class PriceFragment : Fragment() {
                 }
             }
             binding.filpcartLayout.setOnClickListener {
-                var intent = Intent(activity, amazonLayout::class.java)
+                var intent = Intent(activity, tabWebsiteLayout::class.java)
                 intent.putExtra("flipkart", binding.etItem.text.toString())
+                editor.apply {
+                    putInt("index", 0)
+                    apply()
+                }
                 startActivity(intent)
             }
             binding.amazonLayout.setOnClickListener {
-                var intent = Intent(activity, amazonLayout::class.java)
+                var intent = Intent(activity, tabWebsiteLayout::class.java)
                 intent.putExtra("amazon", binding.etItem.text.toString())
+                editor.apply {
+                    putInt("index", 1)
+                    apply()
+                }
                 startActivity(intent)
             }
             binding.bigBasketLayout.setOnClickListener {
-                var intent = Intent(activity, amazonLayout::class.java)
+                var intent = Intent(activity, tabWebsiteLayout::class.java)
                 intent.putExtra(
                     "itemLink",
                     "https://www.bigbasket.com/ps/?q=${binding.etItem.text.toString()}"
                 )
+                editor.apply {
+                    putInt("index", 2)
+                    apply()
+                }
                 startActivity(intent)
             }
             binding.jioMartLayout.setOnClickListener {
-                var intent = Intent(activity, amazonLayout::class.java)
+                var intent = Intent(activity, tabWebsiteLayout::class.java)
                 intent.putExtra(
                     "itemLink",
                     "https://www.jiomart.com/search/${binding.etItem.text.toString()}/in/prod_mart_master_vertical"
                 )
+                editor.apply {
+                    putInt("index", 3)
+                    apply()
+                }
                 startActivity(intent)
             }
         } else {

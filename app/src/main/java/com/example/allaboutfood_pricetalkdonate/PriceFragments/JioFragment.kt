@@ -2,10 +2,12 @@ package com.example.allaboutfood_pricetalkdonate.PriceFragments
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.ValueCallback
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.example.allaboutfood_pricetalkdonate.SharedPreferencesManager
@@ -38,6 +40,7 @@ class JioFragment : Fragment() {
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
+                binding.webViewJio.loadUrl("javascript:var x = document.getElementsByClassName('header')[0].style.display='none';" + "javascript:var x = document.getElementsByClassName('footer')[0].style.display='none';")
                 binding.webViewJio.visibility = View.VISIBLE
             }
         }

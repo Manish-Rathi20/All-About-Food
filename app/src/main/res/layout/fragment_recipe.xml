@@ -41,7 +41,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/andika_new_basic"
-        android:text="Hii,User"
+        android:text="Hii,Cook"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/profile_image_recipe"
